@@ -33,6 +33,9 @@ def create_app(config_class=Config):
     app.register_blueprint(errors)
 
     from flaskblog.models import User, Post
+    with app.app_context():
+        db.create_all()
+
     from sqlalchemy import func
 
     @app.context_processor
